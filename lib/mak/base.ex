@@ -32,7 +32,7 @@ defmodule Mak.Base do
   def create_machine(attrs \\ %{}) do
     %Machine{}
     |> Machine.changeset(attrs)
-    |> post_machine_to_teamplace()
+    # |> post_machine_to_teamplace()
     |> Repo.insert()
   end
 

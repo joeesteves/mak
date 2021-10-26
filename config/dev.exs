@@ -51,7 +51,7 @@ config :phoenix, :stacktrace_depth, 20
 config :mak, Mak.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "postgres",
-  password: System.get_env("MYPASS"),
+  password: "postgres",
   database: "mak_dev",
   hostname: "localhost",
   pool_size: 10

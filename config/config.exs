@@ -37,11 +37,11 @@ config :gettext, :default_locale, "es"
 # of this file so it overrides the configuration defined above.
 
 config :teamplace, :credentials, %{
-  client_id: "60f1bf81ce659570fcde63186eb6f4e4",
-  client_secret: "a25fdd9012d8cff9a23174d8f027e928"
+  client_id: System.get_env("TEAMPLACE_CLIENT_ID"),
+  client_secret: System.get_env("TEAMPLACE_CLIENT_SECRET")
 }
 
-config :teamplace, :api_base, "https://3.teamplace.finneg.com/BSA/api/"
-
+config :teamplace,
+  api_base: System.get_env("TEAMPLACE_API_BASE")
 
 import_config "#{Mix.env()}.exs"
