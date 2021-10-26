@@ -39,7 +39,7 @@
       <main role="main">
         <div id="my-react-app"> </div>
 
-        <%= render @view_module, @view_template, assigns %>
+        <%= @inner_content %>
       </main>
 
     <nav role="navigation">

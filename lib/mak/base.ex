@@ -61,7 +61,7 @@ defmodule Mak.Base do
   end
 
   def next_machine_id do
-    last_id = get_last_machine.id
+    last_id = get_last_machine().id
     last_id_int = String.to_integer(last_id)
 
     zero_complete("#{last_id_int + 1}")

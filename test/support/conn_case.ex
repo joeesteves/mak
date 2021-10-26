@@ -18,8 +18,9 @@ defmodule MakWeb.ConnCase do
   using do
     quote do
       # Import conveniences for testing with connections
-      use Phoenix.ConnTest
       import MakWeb.Router.Helpers
+      import Plug.Conn
+      import Phoenix.ConnTest
 
       # The default endpoint for testing
       @endpoint MakWeb.Endpoint

@@ -25,7 +25,7 @@ config :mak, MakWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "4ntVSROhkwXahcj9VuTqRRm804z4eQcSd8Js0mF+6Tshn2MLEAPuzcDOdsl8Xg6p",
   render_errors: [view: MakWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: Mak.PubSub, adapter: Phoenix.PubSub.PG2]
+  pubsub_server: Mak.PubSub
 
 # Configures Elixir's Logger
 config :logger, :console,
@@ -43,5 +43,7 @@ config :teamplace, :credentials, %{
 
 config :teamplace,
   api_base: System.get_env("TEAMPLACE_API_BASE")
+
+config :phoenix, :json_library, Poison
 
 import_config "#{Mix.env()}.exs"

@@ -1,8 +1,6 @@
 defmodule MakWeb.ImportController do
   use MakWeb, :controller
 
-  alias Mak.Base.Machine
-
   def machines(conn, _params) do
     Application.get_env(:teamplace, :credentials)
     |> Teamplace.get_data("maquinas", "list")

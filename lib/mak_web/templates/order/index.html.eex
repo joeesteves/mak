@@ -5,12 +5,12 @@
   <div class="col-md-8">
     <h2>
       <%= case @status do %>
-        <%= 3 -> %>
+        <% 3 -> %>
           <%= link to: order_path(@conn, :index, status: 4), class: "btn btn-primary btn-xs" do %>
             <span class="glyphicon glyphicon-sort" />
           <% end %>
           <%= link ngettext("%{count} pending", "%{count} pendings", length(@orders)), to: order_path(@conn, :index, status: 4), class: "btn btn-warning btn-xs" %>
-        <%= 4 -> %>
+        <% 4 -> %>
           <%= link to: order_path(@conn, :index, status: 3), class: "btn btn-primary btn-xs" do %>
             <span class="glyphicon glyphicon-sort" />
           <% end %>
