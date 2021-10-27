@@ -1,0 +1,77 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: maq
+  namespace: caravana
+  labels:
+    app: maq
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: maq
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: maq
+    spec:
+      containers:
+        - name: maq
+          image: caravanahub/maq:1
+          ports:
+            - containerPort: 4000
+          env:
+            - name: HOST
+              value: maq.isowean.com
+            - name: PORT
+              value: '4000'
+            - name: DATABASE_URL
+              value: ecto://postgres:postgres@caravana-db:5432/cal_prod
+            - name: SECRET_KEY_BASE
+              value: Zks/p88uM3Y/d8NTUIeJ93UiG+Atnb94EDVY7w5G05YL/Bk/Ij2U6Onx4Pyl5bjm
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: maq
+  namespace: caravana
+  labels:
+    app: maq
+spec:
+  ports:
+    - name: '80'
+      port: 80
+      targetPort: 4000
+  selector:
+    app: maq
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: maq-com-ingress
+  namespace: caravana
+  annotations:
+    kubernetes.io/ingress.class: 'nginx'
+    cert-manager.io/cluster-issuer: 'letsencrypt-prod'
+spec:
+  tls:
+    - hosts:
+        - maq.isowean.com
+      secretName: maq-com-tls
+  rules:
+    - host: maq.isowean.com
+      http:
+        paths:
+          - backend:
+              service:
+                name: maq
+                port:
+                  number: 80
+            pathType: ImplementationSpecific
+

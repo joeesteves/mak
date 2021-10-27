@@ -36,13 +36,6 @@ config :gettext, :default_locale, "es"
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 
-config :teamplace, :credentials, %{
-  client_id: System.get_env("TEAMPLACE_CLIENT_ID"),
-  client_secret: System.get_env("TEAMPLACE_CLIENT_SECRET")
-}
-
-config :teamplace,
-  api_base: System.get_env("TEAMPLACE_API_BASE")
 
 config :phoenix, :json_library, Poison
 

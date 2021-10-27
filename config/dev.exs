@@ -13,6 +13,14 @@ config :mak, MakWeb.Endpoint,
   check_origin: false,
   watchers: [npm: ["run", "watch",cd: Path.expand("../assets", __DIR__)]]
 
+config :teamplace, :credentials, %{
+  client_id: System.get_env("TEAMPLACE_CLIENT_ID"),
+  client_secret: System.get_env("TEAMPLACE_CLIENT_SECRET")
+}
+
+config :teamplace,
+  api_base: System.get_env("TEAMPLACE_API_BASE")
+
 # ## SSL Support
 #
 # In order to use HTTPS in development, a self-signed
